@@ -1,0 +1,35 @@
+# Contributor: Data Retriever <dr@galtland.network>
+# Maintainer: Data Retriever <dr@galtland.network>
+pkgname=frozenkrill
+pkgver=0.1.0-alpha
+pkgrel=0
+pkgdesc="A minimalist Bitcoin wallet focused on cold storage"
+url="https://github.com/planktonlabs/frozenkrill"
+arch="all"
+license="MIT OR APACHE2"
+depends=""
+makedepends="cargo make"
+checkdepends=""
+install=""
+subpackages=""
+source="https://github.com/planktonlabs/$pkgname/archive/refs/tags/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname"
+
+prepare() {
+	default_prepare
+	cargo fetch --locked
+}
+
+build() {
+	cargo build --frozen --release
+}
+
+check() {
+	cargo test --frozen --release --workspace
+}
+
+package() {
+    install -D -m755 target/release/$pkgname -t "$pkgdir"/usr/bin/
+}
+sha512sums="
+"

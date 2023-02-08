@@ -1,0 +1,28 @@
+name: Releases
+on:
+  push:
+    tags:
+      - "v*"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate extended x86_64 iso
+        run: |
+          ./generate_bootable_iso.sh extended x86_64
+      - name: Package
+        run: |
+          cp iso_output/* .
+          for i in *.iso; do
+            cat $i | gzip -9c > $i.gz
+            sha512sum $i.gz $i >> sha512-manifest-checksums.txt
+          done
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "alpine-frozenkrill_extended-edge-x86_64.iso.gz,sha512-manifest-checksums.txt"
+          bodyFile: "Release.md"
+          draft: true
+          prerelease: true
