@@ -6,10 +6,10 @@ In order to verify the release, you'll need to have gpg installed on your system
 curl https://raw.githubusercontent.com/planktonlabs/frozenkrill/master/keys/dr.asc | gpg --import
 ```
 
-Once you have the required PGP keys, you can verify the files. For instance after downloading a file and its signature `.asc`, run on the same directory:
+Once you have the required PGP keys, you can verify the files. For instance after downloading a file and its signature `.sig`, run on the same directory:
 
 ```bash
-gpg --verify alpine-frozenkrill_extended-edge-x86_64.iso.gz.asc
+gpg --verify alpine-frozenkrill_extended-edge-x86_64.iso.gz.sig
 ```
 
 You should see something like:
