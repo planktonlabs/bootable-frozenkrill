@@ -10,7 +10,7 @@ There are pre created ISO files using GitHub Actions on [Releases](https://githu
 Either download the ISO on [Releases page](https://github.com/planktonlabs/bootable-frozenkrill/releases) or see below how to build from scratch
 
 
-## Build from scratch
+## Building from scratch
 You just need Linux and [Docker](https://docs.docker.com/desktop/install/linux-install/)
 
 Then run:
@@ -28,7 +28,7 @@ $ qemu-system-x86_64 -m 512 -cdrom iso_output/alpine-frozenkrill_extended-edge-x
 
 # Booting up
 
-The iso can be written to a usb stick using an appropriate tool like [unetbootin](https://unetbootin.github.io/)
+The ISO can be written to a usb stick using an appropriate tool like [unetbootin](https://unetbootin.github.io/)
 
 Just boot the usb stick and when the prompt login appears, type `root` and press enter (there is no password)
 
