@@ -1,7 +1,7 @@
 # Contributor: Data Retriever <dr@galtland.network>
 # Maintainer: Data Retriever <dr@galtland.network>
 pkgname=frozenkrill
-pkgver=0.1.0-alpha
+pkgver=0.2.0-rc3
 pkgrel=0
 pkgdesc="A minimalist Bitcoin wallet focused on cold storage"
 url="https://github.com/planktonlabs/frozenkrill"
