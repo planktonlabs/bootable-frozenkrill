@@ -12,7 +12,7 @@ makedepends=""
 checkdepends=""
 install=""
 subpackages=""
-source="https://github.com/planktonlabs/$pkgname/releases/download/v0.2.0-rc5/$pkgname-${arch}-linux.tar.gz"
+source="https://github.com/planktonlabs/$pkgname/releases/download/v0.2.0-rc7/$pkgname-${arch}-linux.tar.gz"
 builddir="$srcdir/$pkgname"
 
 prepare() {
@@ -24,5 +24,5 @@ package() {
 }
 
 sha512sums="
-0749b34ef03f55c0f5fd19529af7aea74f5e73fe201640270e7edc89f62c4076b1e3d3bd4e2b1791a2e547eb3850460eed488b6f0d7a01db2780cf82c59ac6d3  frozenkrill-x86_64-linux.tar.gz
+3d20744eadd62e96e7942173435421543b1ff46781d02cdf8afff94bdf720f62e76372fedfb1d418439aff3b95d1ce4418a59c95f2eb42df1ba07123789a6db9  frozenkrill-x86_64-linux.tar.gz
 "

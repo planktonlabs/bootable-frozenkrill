@@ -12,4 +12,4 @@ cd /aports/testing/frozenkrill
 cat APKBUILD
 abuild -r
 
-sudo sh /aports/scripts/mkimage.sh --tag edge --outdir $OUT_DIR --arch $ARCH --repository http://dl-cdn.alpinelinux.org/alpine/edge/main --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --repository http://dl-cdn.alpinelinux.org/alpine/edge/community --repository /home/build/packages/testing --profile frozenkrill_$PROFILE
+sudo -E env APK_OPTS="--allow-untrusted" sh /aports/scripts/mkimage.sh --tag edge --outdir $OUT_DIR --arch $ARCH --repository http://dl-cdn.alpinelinux.org/alpine/edge/main --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --repository http://dl-cdn.alpinelinux.org/alpine/edge/community --repository /home/build/packages/testing --profile frozenkrill_$PROFILE
