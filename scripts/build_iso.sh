@@ -12,4 +12,20 @@ cd /aports/testing/frozenkrill
 cat APKBUILD
 abuild -r
 
-sudo -E env APK_OPTS="--allow-untrusted" sh /aports/scripts/mkimage.sh --tag edge --outdir $OUT_DIR --arch $ARCH --repository http://dl-cdn.alpinelinux.org/alpine/edge/main --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --repository http://dl-cdn.alpinelinux.org/alpine/edge/community --repository /home/build/packages/testing --profile frozenkrill_$PROFILE
+# Run mkimage.sh as the build user, not root: apk-tools 3 rejects the
+# --no-chown flag it passes (now an alias of --usermode) when run as root.
+# As the build user it trusts the key from ~/.abuild/abuild.conf, the one
+# that signed the local repository above, so our package stays
+# signature-verified in the image.
+ISO_DIR=/home/build/iso
+mkdir -p $ISO_DIR
+sh /aports/scripts/mkimage.sh \
+	--tag edge --outdir $ISO_DIR --arch $ARCH \
+	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+	--repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+	--repository /home/build/packages/testing \
+	--profile frozenkrill_$PROFILE
+
+# The output volume is created by docker and owned by root
+sudo cp $ISO_DIR/* $OUT_DIR/
