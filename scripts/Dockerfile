@@ -2,7 +2,10 @@ FROM alpine:latest
 RUN apk update
 RUN apk add alpine-sdk build-base apk-tools alpine-conf busybox fakeroot syslinux xorriso squashfs-tools sudo
 RUN apk add mtools dosfstools grub-efi
-RUN git clone --depth=1 https://gitlab.alpinelinux.org/alpine/aports.git
+# gitlab.alpinelinux.org rejects GitHub Actions runners (HTTP 418), so fall
+# back to Alpine's official GitHub mirror
+RUN git clone --depth=1 https://gitlab.alpinelinux.org/alpine/aports.git || \
+	git clone --depth=1 https://github.com/alpinelinux/aports.git
 RUN abuild-keygen -nia
 RUN adduser build -G abuild --disabled-password && echo "%abuild ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/abuild
 RUN su - build -c "abuild-keygen -nia"
